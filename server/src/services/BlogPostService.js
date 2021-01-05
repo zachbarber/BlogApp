@@ -26,8 +26,6 @@ export class BlogPostService {
 
     read() {
 
-
-
     }
 
     update() {
