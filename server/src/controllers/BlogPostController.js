@@ -9,8 +9,6 @@ router.post('/', async (req, res) => {
     res.send(data);
 });
 
-router.get('/', async (req, res) => {
-    res.send('FUCK');
-});
+// add router.get for blogpost read and a put update
 
 module.exports = router;

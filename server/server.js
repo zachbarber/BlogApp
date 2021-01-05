@@ -7,7 +7,7 @@ const blogRoutes = require('./src/controllers/BlogPostController');
 
 const app = express();
 
-const PORT = process.env.PORT | 35564;
+const PORT = process.env.PORT | 35565;
 
 app.use(cors());
 
