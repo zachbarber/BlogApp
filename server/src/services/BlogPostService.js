@@ -11,7 +11,9 @@ export class BlogPostService {
         });
     
         this.connection.connect((err) => {
-    
+            if (err) {
+                throw err;
+            }
             console.log('Connected to mysql')
         })
     }
