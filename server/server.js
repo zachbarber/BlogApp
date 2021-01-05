@@ -3,8 +3,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-const blogroutes = require('./src/controllers/BlogPostController');
-
+const blogRoutes = require('./src/controllers/BlogPostController');
 
 const app = express();
 
@@ -16,7 +15,7 @@ app.use(express.static(path.join(__dirname,"../blog-app/build")));
 
 app.use(bodyParser.json());
 
-app.use('/blogpost', blogroutes);
+app.use('/blogpost', blogRoutes);
 
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, '../blog-app/build/index.html'));

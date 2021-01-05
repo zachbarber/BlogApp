@@ -21,8 +21,7 @@ export class BlogPostService {
     async create(blogPost) {
 
         this.validate(blogPost);
-        console.log('validated');
-        const result = await this.connection.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
+        await this.connection.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
     }
 
     read() {
