@@ -1,15 +1,26 @@
+const mysql = require('mysql');
+
 export class BlogPostService {
 
-    constructor(mySql) {
-        this.mySql = mySql;
+    constructor() {
+        this.connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'password',
+            database: 'blogpost'
+        });
+    
+        this.connection.connect((err) => {
+    
+            console.log('Connected to mysql')
+        })
     }
 
     async create(blogPost) {
 
         this.validate(blogPost);
-        const result = await this.mySql.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW()', [title, body]);
-        return result;
-
+        console.log('validated');
+        const result = await this.connection.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
     }
 
     read() {

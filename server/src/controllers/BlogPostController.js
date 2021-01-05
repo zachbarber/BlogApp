@@ -1,41 +1,16 @@
 const router = require('express').Router();
 
-export class BlogPostController {
+const { BlogPostService } = require('../services/BlogPostService');
 
-    constructor(blogPostService) {
+const blogPostService = new BlogPostService();
 
-        this.blogPostService = blogPostService;
-        this.routes = router;
+router.post('/', async (req, res) => {
+    const data = await blogPostService.create(req.body);
+    res.send(data);
+});
 
-    }
+router.get('/', async (req, res) => {
+    res.send('FUCK');
+});
 
-    create() {
-
-        router.post('/', async (req, res) => {
-            await this.blogPostService.create(req.body);
-        });
-
-    }
-
-    read() {
-
-
-
-    }
-
-    update() {
-
-
-
-    }
-
-    delete() {
-
-
-
-    }
-
-
-}
-
-// module.exports = router;
+module.exports = router;
