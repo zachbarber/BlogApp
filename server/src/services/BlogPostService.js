@@ -9,7 +9,7 @@ export class BlogPostService {
             password: 'password',
             database: 'blogpost'
         });
-    
+
         this.connection.connect((err) => {
             if (err) {
                 throw err;
@@ -21,14 +21,15 @@ export class BlogPostService {
     async create(blogPost) {
 
         this.validate(blogPost);
-        await this.connection.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
+        await this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
     }
 
     async read(blogId) {
-        if(blogId) {
-        await this.connection.query('SELECT * FROM blogs WHERE id = ?', [blogId]);
-
-    }
+        if (blogId) {
+            let result = null;
+            await this.connection.query('SELECT * FROM blogs WHERE id = ?', [blogId]).then(res => result = res);
+            return result;
+        }
 
     }
 

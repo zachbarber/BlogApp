@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req,res) => {
-    const data 
+    const data = await blogPostService.read(req.query.id);
+    res.json(data);
 })
 
 // add router.get for blogpost read and a put update
