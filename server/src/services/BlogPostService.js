@@ -56,7 +56,7 @@ export class BlogPostService {
     }
 
     async update(blogPost) {
-        if (blogPost.id && this.validate(blogPost) && await this.read(blogPost.id).length) {
+        if (typeof blogPost.id === 'number' && this.validate(blogPost) && await this.read(blogPost.id).length !== 0) {
             
             return new Promise((resolve, reject) => {
                 this.connection.query('UPDATE blogs SET body = ? WHERE id = ?', [blogPost.body, blogPost.id], (err, rows) => {
@@ -68,7 +68,7 @@ export class BlogPostService {
             });
 
         }
-
+        console.log(blogPost);
         throw new Error('Id must be supplied on update');
     }
 
