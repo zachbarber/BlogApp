@@ -9,6 +9,10 @@ router.post('/', async (req, res) => {
     res.send(data);
 });
 
+router.get('/', async (req,res) => {
+    const data 
+})
+
 // add router.get for blogpost read and a put update
 
 module.exports = router;
