@@ -18,10 +18,18 @@ export class BlogPostService {
         })
     }
 
-    async create(blogPost) {
+    create(blogPost) {
 
         this.validate(blogPost);
-        await this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
+
+        return new Promise((resolve, reject) => {
+            this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body], (err, rows) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(rows);
+            });
+        });
     }
 
     read(blogId) {
@@ -47,8 +55,21 @@ export class BlogPostService {
 
     }
 
-    update() {
+    async update(blogPost) {
+        if (blogPost.id && this.validate(blogPost) && await this.read(blogPost.id).length) {
+            
+            return new Promise((resolve, reject) => {
+                this.connection.query('UPDATE blogs SET body = ? WHERE id = ?', [blogPost.body, blogPost.id], (err, rows) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve(rows);
+                });
+            });
 
+        }
+
+        throw new Error('Id must be supplied on update');
     }
 
     delete() {
@@ -64,8 +85,9 @@ export class BlogPostService {
         if (title === null || title === undefined || title === '') {
             errors.push({
 
+                field: 'title',
                 type: 'Validation Error',
-                field: 'title'
+                message: 'title is null'
 
             });
         }
@@ -73,14 +95,37 @@ export class BlogPostService {
         if (body === null || body === undefined || body === '') {
             errors.push({
 
+                field: 'body',
                 type: 'Validation Error',
-                field: 'body'
+                message: 'body is null'
+
+            });
+        }
+
+        if (title.length > 200) {
+            errors.push({
+
+                field: 'title',
+                type: 'Validation Error',
+                message: 'title is over 200 characters'
+
+            })
+        }
+
+        if (body.length > 400) {
+            errors.push({
+
+                field: 'body',
+                type: 'Validation Error',
+                message: 'body is over 400 characters'
 
             });
         }
 
         if (errors.length !== 0) {
             throw new Error(errors);
+        } else {
+            return true;
         }
 
     }
