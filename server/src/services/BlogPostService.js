@@ -24,9 +24,17 @@ export class BlogPostService {
         await this.connection.query('INSERT INTO blogs (title, body, createdAt) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body]);
     }
 
-    async read(blogId) {
+    read(blogId) {
         if(blogId) {
-        await this.connection.query('SELECT * FROM blogs WHERE id = ?', [blogId]);
+        return new Promise((resolve, reject) => {
+            this.connection.query('SELECT * FROM blogs WHERE id = ?', [blogId], (err, rows) =>{
+                if (err){
+                    return reject(err);
+                }
+                resolve(rows);
+            });
+            });
+        }
 
     }
 
