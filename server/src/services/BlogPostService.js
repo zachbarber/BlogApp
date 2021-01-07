@@ -25,7 +25,7 @@ export class BlogPostService {
 
         this.validate(blogPost);
 
-        const createPost = () => {
+        const data = await (() =>{
 
             return new Promise((resolve, reject) => {
                 this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body], (err, rows) => {
@@ -36,10 +36,7 @@ export class BlogPostService {
                     resolve(rows);
                 });
             });
-        }
-
-        const data = await createPost();
-
+        })()
 
         return new Promise((resolve, reject) => {
             this.connection.query('SELECT * FROM blogs WHERE id = ?', [data.insertId], (err, rows) => {
