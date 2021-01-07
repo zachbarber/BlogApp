@@ -19,6 +19,11 @@ router.put('/', async (req, res) => {
     res.json(data);
 });
 
+router.delete('/', async (req, res) => {
+    const data = await blogPostService.delete(req.query.id);
+    res.json(data);
+});
+
 // add router.get for blogpost read and a put update
 
 module.exports = router;

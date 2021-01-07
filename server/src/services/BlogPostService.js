@@ -1,5 +1,3 @@
-import { resolve } from 'path';
-
 const mysql = require('mysql');
 
 export class BlogPostService {
@@ -25,7 +23,7 @@ export class BlogPostService {
 
         this.validate(blogPost);
 
-        const data = await (() =>{
+        const data = await (() => {
 
             return new Promise((resolve, reject) => {
                 this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body], (err, rows) => {
@@ -36,7 +34,7 @@ export class BlogPostService {
                     resolve(rows);
                 });
             });
-        })()
+        })();
 
         return new Promise((resolve, reject) => {
             this.connection.query('SELECT * FROM blogs WHERE id = ?', [data.insertId], (err, rows) => {
@@ -77,7 +75,17 @@ export class BlogPostService {
     async update(blogPost) {
 
         if (typeof blogPost.id === 'number' && this.validate(blogPost) && await this.read(blogPost.id).length !== 0) {
-            await this.connection.query('UPDATE blogs SET body = ?, modified_at = NOW() WHERE id = ?', [blogPost.body, blogPost.id]);
+
+            await (() => {
+                return new Promise((resolve, reject) => {
+                    this.connection.query('UPDATE blogs SET body = ?, modified_at = NOW() WHERE id = ?', [blogPost.body, blogPost.id], (err, rows) => {
+                        if (err) {
+                            return reject(err);
+                        }
+                        resolve(rows);
+                    });
+                });
+            })();
 
             return new Promise((resolve, reject) => {
                 this.connection.query('SELECT * FROM blogs WHERE id = ?', [blogPost.id], (err, rows) => {
@@ -93,9 +101,20 @@ export class BlogPostService {
 
     }
 
-    delete() {
+    delete(blogId) {
 
-    }
+        if (blogId) {
+            return new Promise((resolve, reject) => {
+                this.connection.query('UPDATE blogs SET deleted_at = NOW() WHERE id = ?', [blogId], (err, rows) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    resolve(rows);
+                });
+            })
+        };
+    };
+
 
     validate(blogPost) {
 
