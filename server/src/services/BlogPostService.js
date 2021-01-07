@@ -21,21 +21,27 @@ export class BlogPostService {
         })
     }
 
-    create(blogPost) {
+    async create(blogPost) {
 
         this.validate(blogPost);
 
-        const createPost = new Promise((resolve, reject) => {
-            this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body], (err, rows) => {
-                if (err) {
-                    return reject(err);
-                }
+        const createPost = () => {
 
-                resolve(rows);
+            return new Promise((resolve, reject) => {
+                this.connection.query('INSERT INTO blogs (title, body, created_at) VALUES (?, ?, NOW())', [blogPost.title, blogPost.body], (err, rows) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    resolve(rows);
+                });
             });
-        });
+        }
 
-        createPost.then((data) => {
+        const data = await createPost();
+
+
+        return new Promise((resolve, reject) => {
             this.connection.query('SELECT * FROM blogs WHERE id = ?', [data.insertId], (err, rows) => {
                 if (err) {
                     return reject(err);
@@ -43,7 +49,7 @@ export class BlogPostService {
 
                 resolve(rows);
             });
-        })
+        });
 
     }
 
