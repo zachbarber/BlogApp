@@ -1,3 +1,5 @@
+import cors from 'cors';
+
 const router = require('express').Router();
 
 const { BlogPostService } = require('../services/BlogPostService');
@@ -9,7 +11,7 @@ router.post('/', async (req, res) => {
     res.json(data);
 });
 
-router.get('/', async (req,res) => {
+router.get('/', cors(), async (req,res) => {
     const data = await blogPostService.read(req.query.id);
     res.json(data);
 })

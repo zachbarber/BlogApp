@@ -23,7 +23,7 @@ class BlogPosts extends React.Component {
     render() {
 
         const blogPosts = this.state.blogPosts.map(blog => {
-            return <BlogPost id={blog.id} title={blog.title} body={blog.body} />
+            return <BlogPost key={blog.id} id={blog.id} title={blog.title} body={blog.body} />
         });
 
         return (

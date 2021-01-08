@@ -1,0 +1,25 @@
+.blogPostContainer {
+    height: 30%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blogPostTitle {
+    height: 10%;
+    width: 95%;
+}
+
+.blogPostTitle h1 {
+    margin: 0px;
+}
+
+.blogPostBody {
+    height: 85%;
+    width: 95%;
+}
+
+.blogPostBody p {
+    margin: 0px;
+}
