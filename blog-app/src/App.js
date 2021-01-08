@@ -1,9 +1,9 @@
-import BlogPost from './BlogPost';
+import BlogPosts from './BlogPosts';
 import './App.css';
 
 function App() {
   return (
-<BlogPost />
+<BlogPosts />
   );
 }
 

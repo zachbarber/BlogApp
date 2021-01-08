@@ -1,10 +1,12 @@
-import React from 'react';
-import './BlogPost.css'
+function BlogPost(props) {
 
-class BlogPost extends React.Component() {
-
-    
-
+    return (
+        <div>
+            <h1>{props.id}</h1>
+            <h1>{props.title}</h1>
+            <h1>{props.body}</h1>
+        </div>
+    )
 }
 
 export default BlogPost
