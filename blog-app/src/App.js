@@ -1,4 +1,4 @@
-import BlogPosts from './BlogPosts';
+import BlogPosts from './components/BlogPosts';
 import './App.css';
 
 function App() {
