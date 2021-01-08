@@ -8,7 +8,7 @@ function BlogPost(props) {
             <div className='blogPostTitle'>
                 <h1>{props.title}</h1>
             </div>
-
+            
             <div className='blogPostBody'>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi orci, accumsan ut blandit nec, fermentum non nulla. Proin dapibus mattis urna a efficitur. Aenean in venenatis leo, ut congue nibh. Ut sit amet ullamcorper nulla, sagittis accumsan ante. Donec mattis magna a nisl accumsan iaculis. Vivamus congue pellentesque fermentum. Aliquam justo tortor, aliquam a ultrices non, ornare lacinia urna. Proin vulputate varius enim, eu scelerisque ipsum. Praesent laoreet non mi sed pretium. Cras dictum sed ex ut venenatis. Curabitur eu felis nibh. Ut id aliquet dui. Nullam tellus erat, rhoncus id tellus et, vestibulum blandit ante. Ut dignissim a odio in venenatis. Vestibulum porta finibus maximus. Phasellus ultricies turpis sed nunc varius, iaculis suscipit elit sagittis.
@@ -21,6 +21,10 @@ function BlogPost(props) {
 
                     Aenean luctus augue id semper posuere. Quisque accumsan convallis nulla, nec posuere ligula malesuada ac. Fusce lobortis cursus ligula sed rhoncus.
                     </p>
+            </div>
+
+            <div className='buttonContainer'>
+                <button>Go To Post</button>
             </div>
 
         </div>
