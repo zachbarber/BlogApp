@@ -1,1 +1,1 @@
-placeholder
+always run a server terminal and npm start terminal in react folder
