@@ -28,9 +28,10 @@ class BlogPosts extends React.Component {
 
         return (
 
-            <>
+            <div className='blogsContainer'>
                 {blogPosts}
-            </>
+            </div>
+
         )
     }
 

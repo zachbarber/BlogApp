@@ -3,7 +3,13 @@ import './App.css';
 
 function App() {
   return (
-<BlogPosts />
+
+<div className='appContainer'>
+    <div className='contentContainer'>
+        <BlogPosts />
+    </div>
+</div>
+
   );
 }
 
