@@ -27,17 +27,23 @@
     height: 25vh;
     width: 95%;
     border-radius: .5vh;
-    box-shadow: 0px 0px 5px black;
     background-color: #c8cfdb;
+    box-shadow: 0px 0px 5px black;
+    overflow: hidden;
+}
+
+.blogPostBodyText {
+    height: 22vh;
+    width: auto;
+    border: 1.5vh solid #c8cfdb;
+    border-top-width: .5vh;
+    border-bottom-width: 2.5vh;
+    border-radius: .5vh;
     overflow: hidden;
 }
 
 .blogPostBody p {
-    margin: 0%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
     font-size: 1.5vh;
-    overflow-y: hidden;
 }
+
+/* #c8cfdb */
