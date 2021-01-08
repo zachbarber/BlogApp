@@ -8,7 +8,7 @@ function BlogPost(props) {
             <div className='blogPostTitle'>
                 <h1>{props.title}</h1>
             </div>
-
+            
             <div className='blogPostBody'>
                 <div className='blogPostBodyText'>
                     <p>
@@ -23,6 +23,10 @@ function BlogPost(props) {
                         Aenean luctus augue id semper posuere. Quisque accumsan convallis nulla, nec posuere ligula malesuada ac. Fusce lobortis cursus ligula sed rhoncus.
                     </p>
                 </div>
+            </div>
+
+            <div className='buttonContainer'>
+                <button>Go To Post</button>
             </div>
 
         </div>
