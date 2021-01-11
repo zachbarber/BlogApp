@@ -1,10 +1,5 @@
 import './BlogPost.css';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0c26ad564106e59d8bac6593209a41560c61a925
 
 function BlogPost(props) {
     return (
@@ -31,10 +26,6 @@ function BlogPost(props) {
             </div>
 
             <div className='buttonContainer'>
-<<<<<<< HEAD
-                {/* <button id={props.id} onClick={props.goToPostOnClick()}>Go To Post</button> */}
-=======
->>>>>>> 0c26ad564106e59d8bac6593209a41560c61a925
                 <Link to={`/post?id=${props.id}`}>Go To Post</Link>
             </div>
 
