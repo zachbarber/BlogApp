@@ -47,15 +47,7 @@
 }
 
 .blogPostBody p {
-<<<<<<< HEAD
     font-size: 1.5vh;
-}
-
-/* #c8cfdb */
-=======
-    margin: 0%;
-    font-size: 1.5vh;
-    overflow-y: hidden;
 }
 
 .buttonContainer {
@@ -71,4 +63,3 @@
     cursor: pointer;
 
 }
->>>>>>> 90f9a23dab3ff6e8a54486a5932f0ef7a0975401
