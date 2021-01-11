@@ -20,10 +20,16 @@ class BlogPosts extends React.Component {
         this.setState({ blogPosts: apiData.data });
     }
 
+    goToPostOnClick(event) {
+        const postId = event.target.id;       
+        
+        
+    }
+
     render() {
 
         const blogPosts = this.state.blogPosts.map(blog => {
-            return <BlogPost key={blog.id} id={blog.id} title={blog.title} body={blog.body} />
+            return <BlogPost key={blog.id} id={blog.id} title={blog.title} body={blog.body} goToPostOnClick={() => this.goToPostOnClick}/>
         });
 
         return (

@@ -1,4 +1,7 @@
 import './BlogPost.css';
+import { Link } from 'react-router-dom';
+
+
 
 function BlogPost(props) {
 
@@ -26,7 +29,8 @@ function BlogPost(props) {
             </div>
 
             <div className='buttonContainer'>
-                <button>Go To Post</button>
+                {/* <button id={props.id} onClick={props.goToPostOnClick()}>Go To Post</button> */}
+                <Link to={`/post?id=${props.id}`}>Go To Post</Link>
             </div>
 
         </div>
